@@ -80,26 +80,13 @@
       }
     </style>
     <script>
-      const APP_STORE_URL = "https://apps.apple.com/us/app/id6529523756";
+      const APP_STORE_URL =
+        "https://apps.apple.com/kr/app/%EC%98%AC%ED%83%9D%EC%8A%A4-%EB%82%B4%EC%86%90%EC%95%88%EC%9D%98-%EC%84%B8%EB%AC%B4-%EB%B9%84%EC%84%9C/id6529523756";
       const PLAY_STORE_URL =
         "https://play.google.com/store/apps/details?id=kr.co.alltaxmobile.aos";
 
-      const ROUTES = {
-        membership: "/membership",
-        "payment-methods": "/payment-methods",
-      };
-
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const isAndroid = /android/i.test(userAgent);
       const isIOS = /iPad|iPhone|iPod/.test(userAgent);
-
-      const params = new URLSearchParams(window.location.search);
-      const target = params.get("target") || "membership";
-      const appPath = ROUTES[target] || "/";
-
-      // TODO: 앱에서 최종적으로 받을 universal link 경로 규칙이 정해지면 맞춰주세요.
-      const deepLinkUrl =
-        "https://link.alltaxmobile.co.kr" + appPath + window.location.search;
 
       function fallbackStoreUrl() {
         if (isIOS) return APP_STORE_URL;
@@ -107,21 +94,15 @@
       }
 
       window.addEventListener("load", () => {
-        const targetLabel = document.getElementById("target-label");
-        if (targetLabel) {
-          targetLabel.textContent = target;
-        }
-
         const manualLink = document.getElementById("manual-link");
         const storeLink = fallbackStoreUrl();
         manualLink.href = storeLink;
 
+        // 앱이 설치된 경우 Universal Link/App Link가 먼저 앱을 엽니다.
+        // 웹이 열렸다면 fallback으로 스토어로 이동합니다.
         setTimeout(() => {
           window.location.replace(storeLink);
-        }, 400);
-
-        // 설치 기기에서는 universal link가 우선 동작하고, 실패 시 웹 페이지가 열립니다.
-        window.location.href = deepLinkUrl;
+        }, 500);
       });
     </script>
   </head>
@@ -130,10 +111,9 @@
       <span class="badge">ALLTAX APPLINK</span>
       <h1>올택스 앱으로 이동 중입니다</h1>
       <p>
-        앱이 설치되어 있으면 해당 화면으로 열리고, 설치되어 있지 않으면 스토어로
+        앱이 설치되어 있으면 올택스 앱이 열리고, 설치되어 있지 않으면 스토어로
         이동합니다.
       </p>
-      <p style="margin-top: 12px">현재 대상: <strong id="target-label">-</strong></p>
       <div class="actions">
         <a id="manual-link" href="/">스토어로 직접 이동</a>
       </div>
