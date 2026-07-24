@@ -1,5 +1,19 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/membership",
+      "destination": "/open"
+    },
+    {
+      "source": "/payment-methods",
+      "destination": "/open"
+    },
+    {
+      "source": "/employedcenter/:id",
+      "destination": "/open"
+    }
+  ],
   "headers": [
     {
       "source": "/.well-known/assetlinks.json",
