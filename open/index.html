@@ -187,11 +187,16 @@
         "https://play.google.com/store/apps/details?id=kr.co.alltaxmobile.aos";
 
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+      const isIOS =
+        /iPad|iPhone|iPod/.test(userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const isAndroid = /Android/i.test(userAgent);
+      const STORE_REDIRECT_DELAY_MS = 800;
 
       function fallbackStoreUrl() {
         if (isIOS) return APP_STORE_URL;
-        return PLAY_STORE_URL;
+        if (isAndroid) return PLAY_STORE_URL;
+        return null;
       }
 
       function appSchemeUrl() {
@@ -221,7 +226,16 @@
         const appUrl = appSchemeUrl();
         const storeLink = fallbackStoreUrl();
         appLink.href = appUrl;
+
+        if (!storeLink) {
+          manualLink.hidden = true;
+          return;
+        }
+
         manualLink.href = storeLink;
+        window.setTimeout(() => {
+          window.location.replace(storeLink);
+        }, STORE_REDIRECT_DELAY_MS);
       });
     </script>
   </head>
@@ -241,7 +255,7 @@
     <main class="panel">
       <h1>올택스를 시작해 보세요</h1>
       <p>
-        앱이 설치되어 있지 않다면 스토어에서 올택스를 설치할 수 있습니다.
+        앱이 설치되어 있지 않다면 잠시 후 스토어로 이동합니다.
       </p>
       <div class="actions">
         <a id="manual-link" class="store-link" href="/">스토어로 이동하기</a>
