@@ -54,16 +54,12 @@
       }
 
       .app-icon {
-        display: grid;
-        place-items: center;
+        display: block;
         flex: 0 0 48px;
         width: 48px;
         height: 48px;
         border-radius: 14px;
-        color: #ffffff;
-        background: linear-gradient(135deg, var(--brand-blue), #4162ff);
-        font-size: 22px;
-        font-weight: 800;
+        object-fit: cover;
       }
 
       .app-copy {
@@ -88,6 +84,12 @@
         flex: 0 0 auto;
         min-width: auto;
         padding: 10px 16px;
+        box-shadow: none;
+      }
+
+      .store-link {
+        color: var(--brand-blue);
+        background: #ffffff;
         box-shadow: none;
       }
 
@@ -226,7 +228,11 @@
   </head>
   <body>
     <aside class="app-banner" aria-label="올택스 앱 열기">
-      <div class="app-icon" aria-hidden="true">A</div>
+      <img
+        class="app-icon"
+        src="/assets/alltax-app-icon.png"
+        alt="올택스 앱 아이콘"
+      />
       <div class="app-copy">
         <strong class="app-name">올택스</strong>
         <span class="app-description">내 손안의 세무 비서</span>
