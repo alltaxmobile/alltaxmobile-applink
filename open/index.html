@@ -117,9 +117,33 @@
         return PLAY_STORE_URL;
       }
 
+      function appSchemeUrl() {
+        const url = new URL(window.location.href);
+        const segments = url.pathname.split("/").filter(Boolean);
+        let target = segments[0];
+        let id = segments[1];
+
+        if (target === "open") {
+          target = segments[1] || url.searchParams.get("screen");
+          id = segments[2] || url.searchParams.get("id");
+        }
+
+        if (target === "payment-methods") {
+          target = "payment_method_manage";
+        } else if (target === "employedcenter") {
+          target = "employedcenter_feed_detail";
+        }
+
+        const appUrl = new URL(`alltaxmobile://${target || ""}`);
+        if (id) appUrl.searchParams.set("id", id);
+        return appUrl.toString();
+      }
+
       window.addEventListener("load", () => {
+        const appLink = document.getElementById("app-link");
         const manualLink = document.getElementById("manual-link");
         const storeLink = fallbackStoreUrl();
+        appLink.href = appSchemeUrl();
         manualLink.href = storeLink;
       });
     </script>
@@ -132,6 +156,7 @@
         실행해 주세요.
       </p>
       <div class="actions">
+        <a id="app-link" href="/">올택스 앱에서 열기</a>
         <a id="manual-link" href="/">스토어로 직접 이동</a>
       </div>
     </main>
