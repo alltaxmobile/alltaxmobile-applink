@@ -111,7 +111,6 @@
 
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const isIOS = /iPad|iPhone|iPod/.test(userAgent);
-      const isKakaoTalk = /KAKAOTALK/i.test(userAgent);
 
       function fallbackStoreUrl() {
         if (isIOS) return APP_STORE_URL;
@@ -147,33 +146,6 @@
         const storeLink = fallbackStoreUrl();
         appLink.href = appUrl;
         manualLink.href = storeLink;
-
-        if (!isKakaoTalk) return;
-
-        let fallbackTimer;
-        const cancelFallback = () => {
-          if (fallbackTimer) {
-            clearTimeout(fallbackTimer);
-            fallbackTimer = undefined;
-          }
-        };
-
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden") cancelFallback();
-        });
-        window.addEventListener("pagehide", cancelFallback);
-        window.addEventListener("blur", cancelFallback);
-
-        // 앱 전환이 발생하지 않은 경우에만 스토어로 이동합니다.
-        fallbackTimer = setTimeout(() => {
-          if (document.visibilityState === "visible") {
-            window.location.replace(storeLink);
-          }
-        }, 1500);
-
-        // 카카오톡 인앱 웹뷰는 Universal Link 대신 웹페이지를 열 수 있어
-        // 등록된 커스텀 스킴으로 앱 실행을 한 번 더 시도합니다.
-        window.location.href = appUrl;
       });
     </script>
   </head>
