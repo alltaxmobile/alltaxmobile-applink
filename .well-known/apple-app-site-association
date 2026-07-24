@@ -3,8 +3,10 @@
     "apps": [],
     "details": [
       {
-        "appID": "REPLACE_WITH_TEAM_ID.kr.co.alltaxmobile.ios",
+        "appID": "8GL8NVSJD3.kr.co.alltaxmobile.ios",
         "paths": [
+          "/",
+          "/*",
           "/open/*",
           "/membership",
           "/payment-methods"

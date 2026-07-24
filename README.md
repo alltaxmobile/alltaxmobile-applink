@@ -20,7 +20,7 @@
 
 `/.well-known/apple-app-site-association`의 아래 값을 실제 값으로 교체하세요.
 
-- `REPLACE_WITH_TEAM_ID.kr.co.alltaxmobile.ios`
+- `8GL8NVSJD3.kr.co.alltaxmobile.ios`
 
 ### 3. 스토어 URL
 
