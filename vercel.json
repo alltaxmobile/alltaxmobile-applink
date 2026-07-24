@@ -13,11 +13,11 @@
       "destination": "/open"
     },
     {
-      "source": "/payment-methods",
+      "source": "/payment_method_manage",
       "destination": "/open"
     },
     {
-      "source": "/employedcenter/:id",
+      "source": "/employedcenter_feed_detail",
       "destination": "/open"
     }
   ],

@@ -198,17 +198,11 @@
         const url = new URL(window.location.href);
         const segments = url.pathname.split("/").filter(Boolean);
         let target = segments[0];
-        let id = segments[1];
+        let id = segments[1] || url.searchParams.get("id");
 
         if (target === "open") {
           target = segments[1] || url.searchParams.get("screen");
           id = segments[2] || url.searchParams.get("id");
-        }
-
-        if (target === "payment-methods") {
-          target = "payment_method_manage";
-        } else if (target === "employedcenter") {
-          target = "employedcenter_feed_detail";
         }
 
         const appUrl = new URL(`alltaxmobile://${target || ""}`);
