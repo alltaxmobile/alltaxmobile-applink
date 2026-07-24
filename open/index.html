@@ -234,6 +234,7 @@
 
         manualLink.href = storeLink;
         let storeRedirectTimer = window.setTimeout(() => {
+          if (document.hidden || !document.hasFocus()) return;
           window.location.replace(storeLink);
         }, STORE_REDIRECT_DELAY_MS);
 
@@ -246,6 +247,7 @@
         document.addEventListener("visibilitychange", () => {
           if (document.hidden) cancelStoreRedirect();
         });
+        window.addEventListener("blur", cancelStoreRedirect);
         window.addEventListener("pagehide", cancelStoreRedirect);
 
         window.location.href = appUrl;
