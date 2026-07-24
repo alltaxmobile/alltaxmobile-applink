@@ -249,24 +249,9 @@
         }
 
         appLink.href = appUrl;
-        let storeRedirectTimer = window.setTimeout(() => {
-          if (document.hidden || !document.hasFocus()) return;
+        window.setTimeout(() => {
           window.location.replace(storeLink);
         }, STORE_REDIRECT_DELAY_MS);
-
-        const cancelStoreRedirect = () => {
-          if (storeRedirectTimer === null) return;
-          window.clearTimeout(storeRedirectTimer);
-          storeRedirectTimer = null;
-        };
-
-        document.addEventListener("visibilitychange", () => {
-          if (document.hidden) cancelStoreRedirect();
-        });
-        window.addEventListener("blur", cancelStoreRedirect);
-        window.addEventListener("pagehide", cancelStoreRedirect);
-
-        window.location.href = appUrl;
       });
     </script>
   </head>
@@ -286,8 +271,7 @@
     <main class="content">
       <h1>올택스를 시작해 보세요</h1>
       <p>
-        앱을 여는 중입니다. 앱이 설치되어 있지 않다면 잠시 후 스토어로
-        이동합니다.
+        올택스 앱을 설치할 수 있도록 잠시 후 스토어로 이동합니다.
       </p>
       <div class="actions">
         <a id="manual-link" class="store-link" href="/">스토어로 이동하기</a>
