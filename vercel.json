@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/open?screen=home"
+    },
+    {
       "source": "/membership",
       "destination": "/open"
     },
