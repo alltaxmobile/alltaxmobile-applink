@@ -219,6 +219,7 @@
           `intent://${intentTarget}` +
           "#Intent;" +
           "scheme=alltaxmobile;" +
+          "package=kr.co.alltaxmobile.aos;" +
           `S.browser_fallback_url=${encodeURIComponent(storeUrl)};` +
           "end"
         );
@@ -241,7 +242,9 @@
         if (isAndroid) {
           const intentUrl = androidIntentUrl(appUrl, storeLink);
           appLink.href = intentUrl;
-          window.location.replace(intentUrl);
+          window.setTimeout(() => {
+            window.location.replace(storeLink);
+          }, STORE_REDIRECT_DELAY_MS);
           return;
         }
 
