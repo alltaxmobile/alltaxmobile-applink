@@ -13,6 +13,10 @@
       "destination": "/open"
     },
     {
+      "source": "/channeltalk",
+      "destination": "/open"
+    },
+    {
       "source": "/web",
       "destination": "/open"
     },

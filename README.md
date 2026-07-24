@@ -34,6 +34,7 @@
 앱에서는 아래 링크를 처리합니다.
 
 - 멤버십: `https://app.alltaxmobile.co.kr/membership`
+- 채널톡: `https://app.alltaxmobile.co.kr/channeltalk`
 - 웹페이지: `https://app.alltaxmobile.co.kr/web?url={percent-encoded URL}`
 - 결제수단 관리: `https://app.alltaxmobile.co.kr/payment_method_manage`
 - 지원사업 상세: `https://app.alltaxmobile.co.kr/employedcenter_feed_detail?id={id}`
@@ -41,6 +42,7 @@
 `/open` fallback 페이지를 사용하는 경우에도 같은 화면을 열 수 있습니다.
 
 - `https://app.alltaxmobile.co.kr/open?screen=membership`
+- `https://app.alltaxmobile.co.kr/open?screen=channeltalk`
 - `https://app.alltaxmobile.co.kr/open?screen=web&url={percent-encoded URL}`
 - `https://app.alltaxmobile.co.kr/open?screen=payment_method_manage`
 - `https://app.alltaxmobile.co.kr/open?screen=employedcenter_feed_detail&id={id}`
