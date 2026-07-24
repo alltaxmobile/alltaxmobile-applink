@@ -130,12 +130,6 @@
 
         manualLink.href = storeLink;
         autoLink.href = storeLink;
-
-        // 앱이 설치된 경우 Universal Link/App Link가 먼저 앱을 엽니다.
-        // 웹이 열렸다면 fallback으로 스토어로 이동합니다.
-        setTimeout(() => {
-          window.location.replace(storeLink);
-        }, 500);
       });
     </script>
   </head>
@@ -143,11 +137,11 @@
     <main class="card">
       <h1>올택스 앱으로 이동 중입니다</h1>
       <p>
-        앱이 설치되어 있으면 올택스 앱이 열리고, 설치되어 있지 않으면 스토어로
-        이동합니다.
+        앱이 자동으로 열리지 않았다면 아래 버튼을 눌러 올택스를 설치하거나
+        실행해 주세요.
       </p>
       <div class="actions">
-        <a id="auto-link" class="primary" href="/">스토어로 이동 중...</a>
+        <a id="auto-link" class="primary" href="/">스토어에서 열기</a>
         <a id="manual-link" href="/">직접 이동하기</a>
       </div>
     </main>
