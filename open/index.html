@@ -213,19 +213,40 @@
         return appUrl.toString();
       }
 
+      function androidIntentUrl(appUrl, storeUrl) {
+        const intentTarget = appUrl.replace(/^alltaxmobile:\/\//, "");
+        return (
+          `intent://${intentTarget}` +
+          "#Intent;" +
+          "scheme=alltaxmobile;" +
+          "package=kr.co.alltaxmobile.aos;" +
+          `S.browser_fallback_url=${encodeURIComponent(storeUrl)};` +
+          "end"
+        );
+      }
+
       window.addEventListener("load", () => {
         const appLink = document.getElementById("app-link");
         const manualLink = document.getElementById("manual-link");
         const appUrl = appSchemeUrl();
         const storeLink = fallbackStoreUrl();
-        appLink.href = appUrl;
 
         if (!storeLink) {
+          appLink.href = appUrl;
           manualLink.hidden = true;
           return;
         }
 
         manualLink.href = storeLink;
+
+        if (isAndroid) {
+          const intentUrl = androidIntentUrl(appUrl, storeLink);
+          appLink.href = intentUrl;
+          window.location.replace(intentUrl);
+          return;
+        }
+
+        appLink.href = appUrl;
         let storeRedirectTimer = window.setTimeout(() => {
           if (document.hidden || !document.hasFocus()) return;
           window.location.replace(storeLink);
