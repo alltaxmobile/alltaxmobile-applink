@@ -13,6 +13,10 @@
       "destination": "/open"
     },
     {
+      "source": "/web",
+      "destination": "/open"
+    },
+    {
       "source": "/payment_method_manage",
       "destination": "/open"
     },

@@ -206,7 +206,12 @@
         }
 
         const appUrl = new URL(`alltaxmobile://${target || ""}`);
-        if (id) appUrl.searchParams.set("id", id);
+        url.searchParams.forEach((value, key) => {
+          if (key !== "screen") appUrl.searchParams.set(key, value);
+        });
+        if (id && !appUrl.searchParams.has("id")) {
+          appUrl.searchParams.set("id", id);
+        }
         return appUrl.toString();
       }
 

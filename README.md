@@ -34,14 +34,22 @@
 앱에서는 아래 링크를 처리합니다.
 
 - 멤버십: `https://app.alltaxmobile.co.kr/membership`
+- 웹페이지: `https://app.alltaxmobile.co.kr/web?url={percent-encoded URL}`
 - 결제수단 관리: `https://app.alltaxmobile.co.kr/payment_method_manage`
 - 지원사업 상세: `https://app.alltaxmobile.co.kr/employedcenter_feed_detail?id={id}`
 
 `/open` fallback 페이지를 사용하는 경우에도 같은 화면을 열 수 있습니다.
 
 - `https://app.alltaxmobile.co.kr/open?screen=membership`
+- `https://app.alltaxmobile.co.kr/open?screen=web&url={percent-encoded URL}`
 - `https://app.alltaxmobile.co.kr/open?screen=payment_method_manage`
 - `https://app.alltaxmobile.co.kr/open?screen=employedcenter_feed_detail&id={id}`
+
+웹페이지 링크 예시:
+
+```text
+https://app.alltaxmobile.co.kr/web?url=https%3A%2F%2Fexample.com%2Fnotice%3Fid%3D123%26type%3Dtax
+```
 
 로그인하지 않은 사용자의 링크는 로그인 완료 후 처리하며, 결제수단 관리는
 사업장 연결이 되어 있어야 진입합니다.
